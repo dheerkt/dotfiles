@@ -11,31 +11,22 @@ Personal configuration files for development environment.
   - File explorer with neo-tree
   - Enhanced statusline with lualine
 
-## Quick Install
+## Install
 
+**From a new machine:**
 ```bash
-# Clone the repo
-git clone https://github.com/dheerkt/dotfiles.git
+bash <(curl -s https://raw.githubusercontent.com/dheerkt/dotfiles/main/install.sh)
+```
 
-# Run the install script
+**After cloning:**
+```bash
+git clone https://github.com/dheerkt/dotfiles.git
 cd dotfiles
 ./install.sh
+nvim
 ```
 
-The install script will:
-1. Create symlinks for config files to your home directory
-2. Check for required tools (git, neovim, etc)
-3. Display setup instructions
-
-## Manual Setup
-
-If you prefer to set up manually:
-
-```bash
-# Neovim config
-mkdir -p ~/.config
-ln -s /path/to/dotfiles/nvim ~/.config/nvim
-```
+The install script creates a symlink to your neovim config. That's it!
 
 ## Requirements
 
