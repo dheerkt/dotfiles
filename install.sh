@@ -19,18 +19,17 @@ if [ -d "$HOME/.config/nvim" ] && [ ! -L "$HOME/.config/nvim" ]; then
 fi
 
 # Backup existing ghostty config
-GHOSTTY_CONFIG_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
-if [ -d "$GHOSTTY_CONFIG_DIR" ] && [ ! -L "$GHOSTTY_CONFIG_DIR/config" ]; then
-    mv "$GHOSTTY_CONFIG_DIR/config" "$GHOSTTY_CONFIG_DIR/config.bak"
-    echo "✅ Backed up existing ghostty config to $GHOSTTY_CONFIG_DIR/config.bak"
+if [ -f "$HOME/.config/ghostty/config" ] && [ ! -L "$HOME/.config/ghostty/config" ]; then
+    mv "$HOME/.config/ghostty/config" "$HOME/.config/ghostty/config.bak"
+    echo "✅ Backed up existing ghostty config to ~/.config/ghostty/config.bak"
 fi
 
 # Create symlinks
 mkdir -p "$HOME/.config"
 ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 
-mkdir -p "$GHOSTTY_CONFIG_DIR"
-ln -sf "$DOTFILES_DIR/ghostty/config" "$GHOSTTY_CONFIG_DIR/config"
+mkdir -p "$HOME/.config/ghostty"
+ln -sf "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 
 echo "✅ Installation complete!"
 echo ""
