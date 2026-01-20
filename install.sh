@@ -31,6 +31,13 @@ ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 mkdir -p "$HOME/.config/ghostty"
 ln -sf "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 
+# OpenCode config
+mkdir -p "$HOME/.config/opencode"
+for item in AGENTS.md agent command skill; do
+    ln -sf "$DOTFILES_DIR/opencode/$item" "$HOME/.config/opencode/$item"
+done
+ln -sf "$DOTFILES_DIR/opencode/opencode.json.work" "$HOME/.config/opencode/opencode.json"
+
 echo "✅ Installation complete!"
 echo ""
 echo "Next: nvim (plugins will auto-install)"
