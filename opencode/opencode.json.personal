@@ -1,0 +1,47 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "manual",
+  "provider": {
+    "github-copilot": {
+      "models": {
+        "gpt-5.2-codex": {
+          "name": "GPT-5.2-Codex"
+        },
+        "gemini-3-flash-preview": {
+          "name": "Gemini 3 Flash"
+        },
+        "claude-sonnet-4.5": {
+          "name": "Claude Sonnet 4.5"
+        },
+        "claude-opus-4.5": {
+          "name": "Claude Opus 4.5"
+        }
+      }
+    }
+  },
+  "agent": {
+    "build": {
+      "model": "github-copilot/gpt-5.2-codex"
+    },
+    "plan": {
+      "model": "github-copilot/gpt-5.2-codex"
+    },
+    "explore": {
+      "model": "github-copilot/gemini-3-flash-preview"
+    },
+    "general": {
+      "model": "github-copilot/gpt-5.2-codex"
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer ctx7sk-a8757060-5562-42b5-a4a2-8a128d228440"
+      },
+      "timeout": 60000
+    }
+  }
+}
