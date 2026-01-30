@@ -42,6 +42,12 @@
         "Authorization": "Bearer ctx7sk-a8757060-5562-42b5-a4a2-8a128d228440"
       },
       "timeout": 60000
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["/Users/dheerkt/.nvm/versions/node/v22.17.0/bin/chrome-devtools-mcp"],
+      "enabled": false,
+      "timeout": 60000
     }
   }
 }
