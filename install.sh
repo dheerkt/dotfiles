@@ -38,6 +38,12 @@ if [ -f "$HOME/.config/ghostty/config" ] && [ ! -L "$HOME/.config/ghostty/config
     echo "✅ Backed up existing ghostty config to ~/.config/ghostty/config.bak"
 fi
 
+# Backup existing opencode config
+if [ -d "$HOME/.config/opencode" ] && [ ! -L "$HOME/.config/opencode" ]; then
+    mv "$HOME/.config/opencode" "$HOME/.config/opencode.bak"
+    echo "✅ Backed up existing opencode config to ~/.config/opencode.bak"
+fi
+
 # Create symlinks
 mkdir -p "$HOME/.config"
 ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
@@ -46,6 +52,7 @@ mkdir -p "$HOME/.config/ghostty"
 ln -sf "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 
 # OpenCode config - link entire directory based on mode
+rm -rf "$HOME/.config/opencode"
 if [ "$WORK" = true ]; then
     ln -sf "$DOTFILES_DIR/opencode-work" "$HOME/.config/opencode"
     echo "✅ Linked work OpenCode config"
