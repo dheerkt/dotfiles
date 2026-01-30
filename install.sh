@@ -1,8 +1,22 @@
 #!/bin/bash
 # Minimal dotfiles installer
-# Usage: ./install.sh (from cloned repo) or bash <(curl -s https://raw.githubusercontent.com/dheerkt/dotfiles/main/install.sh)
+# Usage: ./install.sh [--work] (from cloned repo) or bash <(curl -s https://raw.githubusercontent.com/dheerkt/dotfiles/main/install.sh)
 
 set -e
+
+# Parse arguments
+WORK=false
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --work)
+            WORK=true
+            shift
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
 
 # Setup paths
 if [ -n "$BASH_SOURCE" ]; then
@@ -31,12 +45,14 @@ ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 mkdir -p "$HOME/.config/ghostty"
 ln -sf "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 
-# OpenCode config
-mkdir -p "$HOME/.config/opencode"
-for item in AGENTS.md agent command skill; do
-    ln -sf "$DOTFILES_DIR/opencode/$item" "$HOME/.config/opencode/$item"
-done
-ln -sf "$DOTFILES_DIR/opencode/opencode.json.work" "$HOME/.config/opencode/opencode.json"
+# OpenCode config - link entire directory based on mode
+if [ "$WORK" = true ]; then
+    ln -sf "$DOTFILES_DIR/opencode-work" "$HOME/.config/opencode"
+    echo "✅ Linked work OpenCode config"
+else
+    ln -sf "$DOTFILES_DIR/opencode" "$HOME/.config/opencode"
+    echo "✅ Linked personal OpenCode config"
+fi
 
 echo "✅ Installation complete!"
 echo ""
