@@ -33,6 +33,7 @@
       "model": "github-copilot/gpt-5.2-codex"
     }
   },
+  "plugins": ["@tarquinen/opencode-dcp@latest"],
   "mcp": {
     "context7": {
       "type": "remote",
