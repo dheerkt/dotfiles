@@ -1,6 +1,6 @@
 ---
 name: deep-research
-description: Research a topic, investigate a question, or compare options using public sources and relevant workspace evidence. Use when the user asks for deep research or an evidence-based recommendation.
+description: Research a topic, investigate a question, or compare options using public sources and workspace evidence. Use when the user asks for deep research or an evidence-based recommendation.
 ---
 
 # Deep Research
@@ -12,6 +12,8 @@ Investigate the question thoroughly and verify conclusions against multiple sour
 ## Usage
 
 Use for open-ended research, technical investigations, and comparisons that need more than one source. Do the research directly; do not delegate it to explore agents.
+
+Use public sources and files in the workspace only. Do not query company-internal systems or knowledge bases.
 
 ## Core Concepts
 

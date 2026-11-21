@@ -1,7 +1,8 @@
 {
   "$schema": "https://opencode.ai/v2/cli.json",
   "theme": {
-    "name": "cursor"
+    "name": "catppuccin-mocha",
+    "mode": "dark"
   },
   "diffs": {
     "wrap": "word",
@@ -28,5 +29,9 @@
   },
   "attention": {
     "notifications": true
+  },
+  "experimental": {
+    "new-designs": false,
+    "client-mcp": false
   }
 }

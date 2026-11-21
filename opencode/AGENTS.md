@@ -35,6 +35,12 @@ PREFER single word variable names where possible
 
 - At the end of each plan, give me a list of unresolved questions to answer, if any. Make the questions extremely concise. Sacrifice grammar for the sake of concision.
 
+## Cloudflare
+
+Use Cloudflare's official `cf` CLI for Cloudflare command-line work (deployments, diagnostics, resource management). Never use `wrangler`.
+
+Discover commands with `cf cli search "<task>"`, then `<command> --help`. Keep search queries anonymous.
+
 ## Issue Tracking with bd (beads)
 
 **IMPORTANT**: This project uses **bd (beads)** for ALL issue tracking. Do NOT use markdown TODOs, task lists, or other tracking methods.
