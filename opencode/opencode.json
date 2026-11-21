@@ -66,12 +66,6 @@
         "type": "remote",
         "url": "https://observability.mcp.cloudflare.com/mcp"
       },
-      "context7": {
-        "type": "remote",
-        "url": "https://mcp.context7.com/mcp",
-        "headers": { "Authorization": "Bearer ctx7sk-a8757060-5562-42b5-a4a2-8a128d228440" },
-        "timeout": { "catalog": 60000, "execution": 60000 }
-      },
       "aws-mcp": {
         "type": "local",
         "command": [
