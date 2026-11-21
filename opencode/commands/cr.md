@@ -1,6 +1,5 @@
 ---
 description: Generate CR description - usage /cr <custom prompt>
-model: github-copilot/gpt-5.2-codex
 ---
 
 Generate concise code review description for Amazon CRUX.
