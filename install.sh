@@ -1,22 +1,13 @@
 #!/bin/bash
 # Minimal dotfiles installer
-# Usage: ./install.sh [--work] (from cloned repo) or bash <(curl -s https://raw.githubusercontent.com/dheerkt/dotfiles/main/install.sh)
+# Usage: ./install.sh (from cloned repo) or bash <(curl -s https://raw.githubusercontent.com/dheerkt/dotfiles/main/install.sh)
 
 set -e
 
-# Parse arguments
-WORK=false
-while [[ $# -gt 0 ]]; do
-    case $1 in
-        --work)
-            WORK=true
-            shift
-            ;;
-        *)
-            shift
-            ;;
-    esac
-done
+if [[ $# -ne 0 ]]; then
+    echo "Usage: ./install.sh" >&2
+    exit 1
+fi
 
 # Setup paths
 if [ -n "$BASH_SOURCE" ]; then
@@ -24,6 +15,17 @@ if [ -n "$BASH_SOURCE" ]; then
 else
     DOTFILES_DIR="$HOME/.dotfiles"
     git clone https://github.com/dheerkt/dotfiles.git "$DOTFILES_DIR"
+fi
+
+# Check for OpenCode conflicts before moving any files.
+if [ -e "$HOME/.config/opencode" ] && [ ! -d "$HOME/.config/opencode" ] && [ ! -L "$HOME/.config/opencode" ]; then
+    echo "Expected ~/.config/opencode to be a directory or symlink" >&2
+    exit 1
+fi
+if [ -d "$HOME/.config/opencode" ] && [ ! -L "$HOME/.config/opencode" ] &&
+   { [ -e "$HOME/.config/opencode.bak" ] || [ -L "$HOME/.config/opencode.bak" ]; }; then
+    echo "OpenCode backup already exists at ~/.config/opencode.bak" >&2
+    exit 1
 fi
 
 # Backup existing nvim config
@@ -38,7 +40,7 @@ if [ -f "$HOME/.config/ghostty/config" ] && [ ! -L "$HOME/.config/ghostty/config
     echo "✅ Backed up existing ghostty config to ~/.config/ghostty/config.bak"
 fi
 
-# Backup existing opencode config
+# Back up an existing OpenCode directory without overwriting a backup.
 if [ -d "$HOME/.config/opencode" ] && [ ! -L "$HOME/.config/opencode" ]; then
     mv "$HOME/.config/opencode" "$HOME/.config/opencode.bak"
     echo "✅ Backed up existing opencode config to ~/.config/opencode.bak"
@@ -51,15 +53,12 @@ ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 mkdir -p "$HOME/.config/ghostty"
 ln -sf "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 
-# OpenCode config - link entire directory based on mode
-rm -rf "$HOME/.config/opencode"
-if [ "$WORK" = true ]; then
-    ln -sf "$DOTFILES_DIR/opencode-work" "$HOME/.config/opencode"
-    echo "✅ Linked work OpenCode config"
-else
-    ln -sf "$DOTFILES_DIR/opencode" "$HOME/.config/opencode"
-    echo "✅ Linked personal OpenCode config"
+# OpenCode config
+if [ -L "$HOME/.config/opencode" ]; then
+    rm -f "$HOME/.config/opencode"
 fi
+ln -s "$DOTFILES_DIR/opencode" "$HOME/.config/opencode"
+echo "✅ Linked personal OpenCode config"
 
 echo "✅ Installation complete!"
 echo ""

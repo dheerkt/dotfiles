@@ -10,6 +10,7 @@ Personal configuration files for development environment.
   - Auto-completion with nvim-cmp
   - File explorer with neo-tree
   - Enhanced statusline with lualine
+- **opencode/** - Personal OpenCode configuration
 
 ## Install
 
@@ -26,7 +27,7 @@ cd dotfiles
 nvim
 ```
 
-The install script creates a symlink to your neovim config. That's it!
+The installer links your Neovim, Ghostty, and personal OpenCode configs.
 
 ## Requirements
 

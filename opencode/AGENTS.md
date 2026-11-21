@@ -6,6 +6,8 @@ In all interactions and commit messages, ALWAYS be extremely concise when respon
 
 After completing a coding task or feature, delegate to code-reviewer subagent to review changes before considering work complete.
 
+Do not file external tickets unless the user explicitly requests them.
+
 ## Codestyle
 
 Try to keep things in one function unless composable or reusable
@@ -19,9 +21,15 @@ AVOID using any type
 AVOID let statements
 PREFER single word variable names where possible
 
+## Surgical Changes
+
+- Touch only what the request requires. Match existing style and leave unrelated cleanup alone.
+- Remove imports, variables, and functions only if your changes made them unused.
+
 ## Git
 
-Use `git --no-pager` for all git read commands - for example: `git --no-pager show`, `git --no-pager diff`, `git --no-pager log`
+- Prefer `jj` in repositories that already use it. Otherwise use Git, with `git --no-pager` for read commands.
+- Never push unless the user explicitly asks.
 
 ## Plans
 
